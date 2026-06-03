@@ -17,17 +17,20 @@ bool cmp1(thongtin a, thongtin b)
     */
 }
 /*
-với dự án lỗ thì phải tư duy kiểu khác:
-ta phải ưu tiên cái dự án làm lỗ mà ít trước rôi mới đến những dự án chi ít hơn
-->
-priotiry:
-1: lỗ nhỏ hơn (tức là cái .loi nhỏ hơn)
-2: chi phí nhỏ hơn
+với những dự án lỗ thì cái tư duy nó ảo cực
+trên thực tế trong các nhà tài chính,
+-> dự án lỗ tiềm năng nhất ko phải là lỗ ít nhất mà là thu về nhiều nhất
+-> priority:
+1: thu nhiều nhất
+2: chi ít nhất
+
+
+
 */
 bool cmp2(thongtin a, thongtin b)
 {
     if (a.loi!=b.loi)
-        return a.loi > b.loi;//nếu a lỗ ít hơn thì đặt nó phía trước, cụ thể là số âm lớn hơn ấy
+        return a.thu > b.thu;//nếu a lỗ ít hơn thì đặt nó phía trước, cụ thể là số âm lớn hơn ấy
     //nếu như mà cùng lỗ thì đương nhiên chọn cái chi ít hơn rồi
     return a.chi < b.chi;//cho thằng a lên trước
 }
@@ -86,18 +89,38 @@ int main()
         }
     }
     //đến thằng lỗ
+    priority_queue<long long,vector<long long>,greater<long long>> pq;//pq để lưu lại những dự án lỗ mà ta đã làm, ưu tiên là những dự án lỗ lớn nhất (tức là số âm nhỏ nhất)
+    /*
+    priority queue có cơ chế max heap, giờ để phù hợp thì ta sẽ chọn min heap cho vừa với lỗ lớn nhất
+    
+    ta đã sắp xếp theo thứ tự tiềm năng nhất rồi, phù hợp với bản chất của regret greedy
+    -> duyệt xuôi
+    */
     for (i=1;i<lo.size();i++)
     {
         if (s>=lo[i].chi)
         {
-            s+=lo[i].loi;//bản chất đây là s-chi rồi s+=thu
-            dem++;
+            s+=lo[i].loi;//lỗ nên là s-chi rồi s+=thu
+            pq.push(lo[i].loi);//đẩy cái lỗ vào priority queue
+        }
+        else
+        {
+            if (!pq.empty()&&pq.top()<lo[i].loi)//nếu mà cái lỗ lớn nhất trong priority queue nhỏ hơn cái lỗ hiện tại (tức là lỗ nhiều hơn) thì ta thay thế nó đi
+            {
+                if (s-pq.top()>=lo[i].chi)//điều kiện để thay thế là sau khi bỏ cái lỗ lớn nhất đi thì vẫn đủ tiền để làm cái lỗ hiện tại
+                {//điều kiện này kiên quyết đấy
+                    s-=pq.top();//bỏ cái lỗ lớn nhất đi
+                    pq.pop();
+                    s+=lo[i].loi;//thêm cái lỗ hiện tại vào
+                    pq.push(lo[i].loi);
+                }
+            }
         }
     }
-    cout<<dem;
+    cout<<dem+pq.size();
 
     //xong bài
-
+    //full ac
 
 
 
