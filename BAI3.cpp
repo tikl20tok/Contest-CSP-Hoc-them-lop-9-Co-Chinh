@@ -16,6 +16,21 @@ bool cmp1(thongtin a, thongtin b)
     ta không quan trọng dự án lời bao nhiêu, quan trọng là cái chi của nó càng ít càng tốt
     */
 }
+/*
+với dự án lỗ thì phải tư duy kiểu khác:
+ta phải ưu tiên cái dự án làm lỗ mà ít trước rôi mới đến những dự án chi ít hơn
+->
+priotiry:
+1: lỗ nhỏ hơn (tức là cái .loi nhỏ hơn)
+2: chi phí nhỏ hơn
+*/
+bool cmp2(thongtin a, thongtin b)
+{
+    if (a.loi!=b.loi)
+        return a.loi > b.loi;//nếu a lỗ ít hơn thì đặt nó phía trước, cụ thể là số âm lớn hơn ấy
+    //nếu như mà cùng lỗ thì đương nhiên chọn cái chi ít hơn rồi
+    return a.chi < b.chi;//cho thằng a lên trước
+}
 
 
 int main()
@@ -59,8 +74,29 @@ int main()
 
     */
     sort(loc.begin()+1,loc.end(),cmp1);
+    sort(lo.begin()+1,lo.end(),cmp2);
+    //bắt đầu với thằng lời trước
+    long long dem=0;
+    for (i=1;i<loc.size();i++)
+    {
+        if (s>=loc[i].chi)
+        {
+            s+=loc[i].loi;//bản chất đây là s-chi rồi s+=thu
+            dem++;
+        }
+    }
+    //đến thằng lỗ
+    for (i=1;i<lo.size();i++)
+    {
+        if (s>=lo[i].chi)
+        {
+            s+=lo[i].loi;//bản chất đây là s-chi rồi s+=thu
+            dem++;
+        }
+    }
+    cout<<dem;
 
-
+    //xong bài
 
 
 
