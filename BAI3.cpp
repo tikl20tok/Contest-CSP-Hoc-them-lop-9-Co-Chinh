@@ -26,6 +26,7 @@ trên thực tế trong các nhà tài chính,
 
 
 
+
 */
 bool cmp2(thongtin a, thongtin b)
 {
@@ -41,8 +42,6 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
-    freopen("TESTING.INP","r",stdin);
-    freopen("TESTING.OUT","w",stdout);
 
     long long n,s;
     cin>>n>>s;
