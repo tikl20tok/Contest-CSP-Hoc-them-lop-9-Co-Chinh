@@ -58,7 +58,7 @@ int main()
 
     cout<<tong;
 
-    //full AC
+    //full AC 100%
 
 
 

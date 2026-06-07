@@ -25,7 +25,7 @@ int main()
     }
     cout<<tong<<"\n"<<best;
 
-    //full AC
+    //full AC 100%
 
 
 

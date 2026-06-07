@@ -13,6 +13,8 @@ giả sử có a và b đều thỏa mãn
 nhiều người sẽ lo sợ rằng là cái a tuy ít hơn nhưng lỡ làm kết quả sau cùng bị no valid thì sao
 điều này ko thể xảy ra, cơ bản là do nếu a và b thỏa mãn thì chắc chắn nếu chọn b thì sau cũng ko thỏa mãn nếu thử a ko thỏa mãn
 (xem kĩ hơn trên mạng hoặc trong solution)
+
+nói chung, bài này không quá khó, quan trọng là biết định luật toán học thôi là được
 */
 
 

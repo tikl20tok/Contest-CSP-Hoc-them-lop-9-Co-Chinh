@@ -119,7 +119,7 @@ int main()
     cout<<dem+pq.size();
 
     //xong bài
-    //full ac
+    //full AC 100%
 
 
 
