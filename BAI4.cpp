@@ -101,7 +101,7 @@ int main()
     cout<<t;
 
 
-    //full ac 100%
+    //full AC 100%
 
 
 
